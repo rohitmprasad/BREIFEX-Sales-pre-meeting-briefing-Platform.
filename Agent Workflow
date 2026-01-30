@@ -1,0 +1,82 @@
+Briefex Agentic Workflow
+Breifex orchestrates 5 specialised AI agents through a no-code workflow that converts Slack triggers into meeting-ready briefs in <10 minutes. Here's the complete flow with agent roles and execution stages:
+
+Workflow 
+    [Input]A --> [Slack Trigger] B --> [Meeting Parser Agent]
+    B --> C1[Attendee Insights Agent]
+    B --> C2[Company Insights Agent]
+    C1 + C2 --> D[Brief Assembly Agent]
+    D --> E[Slack Output Agent]
+    F [Slack response]
+    F --> G [Feedback Agent][Optional , if sales rep provides feedback]
+    E / G --> H [Objection Learning Agent] [ If sales rep approved initial brief]
+    H --> I [ Slack node [ Full brief + Objections shared] 
+    
+
+Complete 7-Stage Agentic Pipeline
+
+Stage 1: Trigger & Parse
+[Message received] → [Condition] → [Identify meeting] → [Calendar sync]
+
+    Agent 1: Meeting Parser Agent
+    
+    Role: Extracts attendees, company, and timing from Slack command or calendar event
+    
+    Output: Structured JSON: {meeting_id, attendees[], company, time}
+
+Stage 2: Parallel Intelligence 
+[Get event details] ──┐
+                      ├─→ [Attendee Insights Agent]
+                      └─→ [Company Insights Agent]
+
+    Agent 2: Attendee Insights Agent
+    Fetches LinkedIn profiles, roles, and recent activity
+    Maps relationships (decision-maker vs. influencer)
+    Output: attendee_profiles: [{name, role, influence_score, talking_points}]
+
+    Agent 3: Company Insights Agent
+    Pulls CRM data, recent news, Financial /PR, News 
+    Identifies strategic priorities and pain points
+    Output: company_context: {business_model, recent_events, Financial news / new releases / PR }
+
+
+Stage 3: Brief Synthesis
+[Extract att. names] + [Extract comp. context] → [Pre-meeting Brief]
+
+    Agent 4: Brief Assembly Agent
+    Merges parallel agent outputs into Pre-meeting breif format
+    Generates conversation starters, next-steps
+    Output: Structured brief (Summary: company intel + attendee mapping + Conversational starts + next steps )
+
+Stage 4: Delivery + Sales rep response if any 
+[Concise meeting brief] → [Send reply]
+
+Stage 5: Continuous Refinement/Feedback Agents + Objection Handling agent 
+
+    Agent 5: Feedback Agent  
+    Collects feedback from the sales rep's response on the brief, analyses it and checks if the current brief needs refinement.
+    [ Feedback on future refinement stored in Google Docs for the agent to refer to later for future briefs]
+    Agents self-improve via stored objection patterns
+    Future briefs include predictive objection handlers
+
+Stage 5: Objection handling 
+
+  Agent 5: Objection Learning Agent
+  Monitors rep's post-meeting Slack responses and provides min 3 to 4 key objections and how to handle them 
+  Identifies objection patterns ("budget concerns", "competitor mentioned")
+  Stores for future brief personalisation
+
+
+Stage 6: Final Output: 
+
+  Final Brief + Objections handling script is sent back to Slack for the sales rep to read before attending the meeting. 
+
+
+Platform: Lindy.AI agentic workflows
+Integrations: Slack, Google Calendar, CRM, LinkedIn API, GPT-4o, Perplexity deep search.
+
+Data Flow: JSON between 27+ nodes, full error handling
+Deployment: Live with 5 EdTech sales reps (pilot)
+This architecture scales from 1→100 reps by adding parallel instances while objection learning compounds value over time. Pure no-code agentic systems thinking.
+
+
